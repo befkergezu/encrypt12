@@ -1,0 +1,51 @@
+def check1(x):
+    if len(x)==0:
+        return ""
+    else:
+        if x[0] in x[1:]:
+            return check1(x[1:])
+        else:
+            return x[0]+check1(x[1:])
+def encrypt(x):
+    q=""
+    z=""
+    no="eyd130@#tzouifk^&*()lghsbcvqLPIY;[]RWFmp28ACV/$%NEK794xrnaT_=GDQZ56+-""<wjMXBJO~!}UHS\,>''.?|"
+    for i in range(len(x)):
+            if x[i] == " ":
+                 z += "`"+str(i)
+            for s in range(len(no)):
+                if x[i] == no[s]:
+                    q += no[s + 1]
+
+    return q,z
+def decryption(x):
+    q = ""
+    b=""
+    m=""
+    k=[]
+    no = "eyd130@#tzouifk^&*()lghsbcvqLPIY;[]RWFmp28ACV/$%NEK794xrnaT_=GDQZ56+-""<wjMXBJO~!}UHS\,>''.?|"
+    for i in range(len(x)):
+        if x[i]=="`":
+            b+=x[i+1:]
+            m=x[:i]
+            k=x[i:]
+            break
+    for l in range(len(m)):
+        for s in range(len(no)):
+            if m[l] == no[s]:
+                q += no[s-1]
+    return q,b
+def choose(x):
+    print("If you Want to encrypt enter e. to decrypt enter d")
+    l=input("e/d--")
+    if l == "e":
+        t = input("Enter the text to encrypt--")
+        b = encrypt(t)
+        print(b)
+    elif l=="d":
+        f=input("enter the text to decrypt--")
+        p=decryption(f)
+        print(p)
+    else:
+        print(l+" Is invalid please check your input")
+choose("")
